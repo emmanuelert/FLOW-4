@@ -1,0 +1,256 @@
+[
+    {
+        "id": "a95ed425c17b6c6a",
+        "type": "tab",
+        "label": "Flow 4",
+        "disabled": false,
+        "info": "",
+        "env": []
+    },
+    {
+        "id": "85fc33e34743f8ba",
+        "type": "mqtt in",
+        "z": "a95ed425c17b6c6a",
+        "name": "",
+        "topic": "codigoIoT/G8/mosquitto/msg",
+        "qos": "2",
+        "datatype": "auto",
+        "broker": "6d9cdd7d971ce937",
+        "nl": false,
+        "rap": true,
+        "rh": 0,
+        "inputs": 0,
+        "x": 160,
+        "y": 120,
+        "wires": [
+            [
+                "025448c7f2123d0c",
+                "d463a04d3f618a00"
+            ]
+        ]
+    },
+    {
+        "id": "025448c7f2123d0c",
+        "type": "json",
+        "z": "a95ed425c17b6c6a",
+        "name": "",
+        "property": "payload",
+        "action": "",
+        "pretty": false,
+        "x": 410,
+        "y": 120,
+        "wires": [
+            [
+                "cd18db4cef470aed",
+                "4574945b77594d29"
+            ]
+        ]
+    },
+    {
+        "id": "cd18db4cef470aed",
+        "type": "function",
+        "z": "a95ed425c17b6c6a",
+        "name": "",
+        "func": "msg.topic = msg.payload.id;\nmsg.payload=msg.payload.temp;\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 560,
+        "y": 120,
+        "wires": [
+            [
+                "ed87fa2a9e78edde",
+                "245d50e7d2a87cea"
+            ]
+        ]
+    },
+    {
+        "id": "ed87fa2a9e78edde",
+        "type": "ui_chart",
+        "z": "a95ed425c17b6c6a",
+        "name": "",
+        "group": "d0a310a1d7b1f00d",
+        "order": 1,
+        "width": "6",
+        "height": "6",
+        "label": "chart",
+        "chartType": "line",
+        "legend": "false",
+        "xformat": "HH:mm:ss",
+        "interpolate": "linear",
+        "nodata": "",
+        "dot": false,
+        "ymin": "0",
+        "ymax": "45",
+        "removeOlder": "1",
+        "removeOlderPoints": "",
+        "removeOlderUnit": "3600",
+        "cutout": 0,
+        "useOneColor": false,
+        "useUTC": false,
+        "colors": [
+            "#1f77b4",
+            "#aec7e8",
+            "#ff7f0e",
+            "#2ca02c",
+            "#98df8a",
+            "#d62728",
+            "#ff9896",
+            "#9467bd",
+            "#c5b0d5"
+        ],
+        "outputs": 1,
+        "useDifferentColor": false,
+        "className": "",
+        "x": 770,
+        "y": 120,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "d463a04d3f618a00",
+        "type": "debug",
+        "z": "a95ed425c17b6c6a",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 430,
+        "y": 260,
+        "wires": []
+    },
+    {
+        "id": "4574945b77594d29",
+        "type": "debug",
+        "z": "a95ed425c17b6c6a",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 670,
+        "y": 260,
+        "wires": []
+    },
+    {
+        "id": "245d50e7d2a87cea",
+        "type": "debug",
+        "z": "a95ed425c17b6c6a",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 890,
+        "y": 260,
+        "wires": []
+    },
+    {
+        "id": "1dba9f56adb6cbaa",
+        "type": "inject",
+        "z": "a95ed425c17b6c6a",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "15",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "{\"id\":\"Emmanuel\",\"temp\":22.0}",
+        "payloadType": "str",
+        "x": 130,
+        "y": 400,
+        "wires": [
+            [
+                "52fc9be743602994"
+            ]
+        ]
+    },
+    {
+        "id": "52fc9be743602994",
+        "type": "mqtt out",
+        "z": "a95ed425c17b6c6a",
+        "name": "",
+        "topic": "codigoIoT/G8/mosquitto/msg",
+        "qos": "",
+        "retain": "",
+        "respTopic": "",
+        "contentType": "",
+        "userProps": "",
+        "correl": "",
+        "expiry": "",
+        "broker": "6d9cdd7d971ce937",
+        "x": 460,
+        "y": 400,
+        "wires": []
+    },
+    {
+        "id": "6d9cdd7d971ce937",
+        "type": "mqtt-broker",
+        "name": "",
+        "broker": "18.156.8.172",
+        "port": "1883",
+        "clientid": "",
+        "autoConnect": true,
+        "usetls": false,
+        "protocolVersion": "4",
+        "keepalive": "60",
+        "cleansession": true,
+        "birthTopic": "",
+        "birthQos": "0",
+        "birthPayload": "",
+        "birthMsg": {},
+        "closeTopic": "",
+        "closeQos": "0",
+        "closePayload": "",
+        "closeMsg": {},
+        "willTopic": "",
+        "willQos": "0",
+        "willPayload": "",
+        "willMsg": {},
+        "sessionExpiry": ""
+    },
+    {
+        "id": "d0a310a1d7b1f00d",
+        "type": "ui_group",
+        "name": "G1F4",
+        "tab": "5c7b4cd0f0edb15e",
+        "order": 1,
+        "disp": true,
+        "width": "6",
+        "collapse": false,
+        "className": ""
+    },
+    {
+        "id": "5c7b4cd0f0edb15e",
+        "type": "ui_tab",
+        "name": "FLOW 4",
+        "icon": "dashboard",
+        "order": 3,
+        "disabled": false,
+        "hidden": false
+    }
+]
